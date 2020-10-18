@@ -1,30 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ohdnf' blog</title>
-  <style>
-    ul {
-      list-style-type: none;
-    }
-  </style>
-</head>
-<body>
-  <div>
-    <h1>Welcome to ohdnf's blog!</h1>
+{% extends 'blog/base.html' %}
+
+{% block content %}
+{% for post in posts %}
+  <div class="post">
+    <div class="date">
+      <p>published: {{ post.published_date }}</p>
+    </div>
+    <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+    <p>{{ post.text|linebreaksbr }}</p>
   </div>
-  <div>
-    <ul>
-      <li>
-        <h2><a href="">Announcement</a></h2>
-        <small>Published: 2020-10-18 21:04:32</small>
-      </li>
-      <li>
-        <h2><a href="">Hello</a></h2>
-        <small>Published: 2020-10-18 21:05:22</small>
-      </li>
-    </ul>
-  </div>
-</body>
-</html>
+{% endfor %}
+{% endblock %}
